@@ -37,13 +37,9 @@ fact: (loc tile7 pos1 pos3)
 fact: (loc tile8 pos3 pos2)
 fact: (loc empty pos3 pos1)
 
-fact: (movable tile8 pos3 pos2 pos3 pos1)
-fact: (movable tile4 pos2 pos1 pos3 pos1)
+rule: ((loc ?x ?z pos2) (loc ?y ?z ?p)) -> (adjacent ?x ?y)
+rule: ((loc ?x ?z ?p) (loc ?y ?z pos2)) -> (adjacent ?x ?y)
+rule: ((loc ?x pos2 ?z) (loc ?y ?p ?z)) -> (adjacent ?x ?y)
+rule: ((loc ?x ?p ?z) (loc ?y pos2 ?z)) -> (adjacent ?x ?y)
 
-rule: ((loc X? Z? pos2) (loc Y? Z? P?)) -> (adjacent X? Y?)
-rule: ((loc X? Z? P?) (loc Y? Z? pos2)) -> (adjacent X? Y?)
-rule: ((loc X? pos2 Z?) (loc Y? P? Z?)) -> (adjacent X? Y?)
-rule: ((loc X? P? Z?) (loc Y? pos2 Z?)) -> (adjacent X? Y?)
-
-rule: ((loc X? Y? Z?) (loc empty Q? R?) (adjacent X? empty) -> (movable X? Y? Z? Q? R?)
-rule: ((loc X? Y? Z?) (loc empty Q? R?) (adjacent empty X?) -> (movable X? Y? Z? Q? R?)
+rule: ((loc ?x ?y ?z) (loc empty ?q ?r) (adjacent ?x empty) -> (movable ?x ?y ?z ?q ?r)
